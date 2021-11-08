@@ -2,8 +2,8 @@
 
 let contentTitle;
 
-console.log(document.cookie);
-function dynamicClothingSection(ob) {
+// console.log(document.cookie);
+function dynamicClothingSection(ob,imgUrl) {
   let boxDiv = document.createElement("div");
   boxDiv.id = "box";
 
@@ -15,7 +15,8 @@ function dynamicClothingSection(ob) {
   let imgTag = document.createElement("img");
   // imgTag.id = 'image1'
   // imgTag.id = ob.photos
-  imgTag.src = ob.preview;
+  imgTag.src = imgUrl.img;
+  // console.log(imgUrl)
 
   let detailsDiv = document.createElement("div");
   detailsDiv.id = "details";
@@ -55,6 +56,32 @@ let containerAccessories = document.getElementById("containerAccessories");
 // BACKEND CALLING
 
 let httpRequest = new XMLHttpRequest();
+let img = "https://raw.githubusercontent.com/shahidsiddiqui786/imgdm/main/img.json";
+let accsry = "https://raw.githubusercontent.com/shahidsiddiqui786/imgdm/main/product.json";
+let arr = []
+let acc = []
+
+fetch(img)
+ .then((res) => res.json())
+  .then((data) => {
+    // console.log(data)
+    data.forEach(element => {
+      console.log(element)
+      arr.push(element)
+    });
+  })
+ .catch((err) => console.log(err))
+
+ fetch(accsry)
+ .then((res) => res.json())
+  .then((data) => {
+    // console.log(data)
+    data.forEach(element => {
+      // console.log(element)
+      acc.push(element)
+    });
+  })
+ .catch((err) => console.log(err))
 
 httpRequest.onreadystatechange = function() {
   if (this.readyState === 4) {
@@ -67,14 +94,14 @@ httpRequest.onreadystatechange = function() {
       }
       for (let i = 0; i < contentTitle.length; i++) {
         if (contentTitle[i].isAccessory) {
-          console.log(contentTitle[i]);
+          // console.log(contentTitle[i]);
           containerAccessories.appendChild(
-            dynamicClothingSection(contentTitle[i])
+            dynamicClothingSection(contentTitle[i] , acc[i%5])
           );
         } else {
-          console.log(contentTitle[i]);
+          // console.log(contentTitle[i]);
           containerClothing.appendChild(
-            dynamicClothingSection(contentTitle[i])
+            dynamicClothingSection(contentTitle[i] , arr[i%5])
           );
         }
       }

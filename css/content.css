@@ -24,7 +24,7 @@ h1
 #box 
 {
     width: 100%;
-    background-color: white;
+    background-color: hsl(230deg 80% 95%);
     align-content: center;
     border-radius: 10px;
     box-shadow: 1px 2px 6px 2px rgb(219, 219, 219);

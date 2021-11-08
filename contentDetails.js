@@ -21,7 +21,15 @@ function dynamicContentDetails(ob)
     let imgTag = document.createElement('img')
      imgTag.id = 'imgDetails'
      //imgTag.id = ob.photos
-     imgTag.src = ob.preview
+     if(id <= 5)
+     {
+      imgTag.src = arr[(id-1)%5].img;
+     }
+     else
+     {
+        imgTag.src = acc[(id-1)%5].img; 
+     }
+     
 
     imageSectionDiv.appendChild(imgTag)
 
@@ -57,26 +65,26 @@ function dynamicContentDetails(ob)
     let productPreviewDiv = document.createElement('div')
     productPreviewDiv.id = 'productPreview'
 
-    let h3ProductPreviewDiv = document.createElement('h3')
-    let h3ProductPreviewText = document.createTextNode('Product Preview')
-    h3ProductPreviewDiv.appendChild(h3ProductPreviewText)
-    productPreviewDiv.appendChild(h3ProductPreviewDiv)
+    // let h3ProductPreviewDiv = document.createElement('h3')
+    // let h3ProductPreviewText = document.createTextNode('Product Preview')
+    // h3ProductPreviewDiv.appendChild(h3ProductPreviewText)
+    // productPreviewDiv.appendChild(h3ProductPreviewDiv)
 
-    let i;
-    for(i=0; i<ob.photos.length; i++)
-    {
-        let imgTagProductPreviewDiv = document.createElement('img')
-        imgTagProductPreviewDiv.id = 'previewImg'
-        imgTagProductPreviewDiv.src = ob.photos[i]
-        imgTagProductPreviewDiv.onclick = function(event)
-        {
-            console.log("clicked" + this.src)
-            imgTag.src = ob.photos[i]
-            document.getElementById("imgDetails").src = this.src 
+    // let i;
+    // for(i=0; i<ob.photos.length; i++)
+    // {
+    //     let imgTagProductPreviewDiv = document.createElement('img')
+    //     imgTagProductPreviewDiv.id = 'previewImg'
+    //     imgTagProductPreviewDiv.src = ob.photos[i]
+    //     imgTagProductPreviewDiv.onclick = function(event)
+    //     {
+    //         console.log("clicked" + this.src)
+    //         imgTag.src = ob.photos[i]
+    //         document.getElementById("imgDetails").src = this.src 
             
-        }
-        productPreviewDiv.appendChild(imgTagProductPreviewDiv)
-    }
+    //     }
+    //     productPreviewDiv.appendChild(imgTagProductPreviewDiv)
+    // }
 
     let buttonDiv = document.createElement('div')
     buttonDiv.id = 'button'
@@ -142,6 +150,35 @@ let httpRequest = new XMLHttpRequest()
         }
     }
 }
+
+let img = "https://raw.githubusercontent.com/shahidsiddiqui786/imgdm/main/img.json";
+let accsry = "https://raw.githubusercontent.com/shahidsiddiqui786/imgdm/main/product.json";
+let arr = []
+let acc = []
+
+fetch(img)
+ .then((res) => res.json())
+  .then((data) => {
+    // console.log(data)
+    data.forEach(element => {
+      console.log(element)
+      arr.push(element)
+    });
+  })
+ .catch((err) => console.log(err))
+
+ fetch(accsry)
+ .then((res) => res.json())
+  .then((data) => {
+    // console.log(data)
+    data.forEach(element => {
+      // console.log(element)
+      acc.push(element)
+    });
+  })
+ .catch((err) => console.log(err))
+
+ 
 
 httpRequest.open('GET', 'https://5d76bf96515d1a0014085cf9.mockapi.io/product/'+id, true)
 httpRequest.send()  

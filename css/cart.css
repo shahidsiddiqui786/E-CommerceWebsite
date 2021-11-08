@@ -30,7 +30,7 @@ img
 }
 #box
 {
-    background-color: white;
+    background-color: hsl(230deg 80% 95%);
     box-shadow: 1px 2px 6px 2px rgb(219, 219, 219);
     border-radius: 10px;
     width: 100%;
@@ -46,7 +46,7 @@ img
     width: 50%;
     padding: 20px;
     margin: auto;
-    background-color: white;
+    background-color: hsl(230deg 80% 100%);
     border-radius: 10px;
     box-shadow: 1px 2px 6px 2px rgb(219, 219, 219);
 }
@@ -57,7 +57,7 @@ img
 button
 {
     padding: 8px 12px;
-    background-color: rgb(3, 122, 122);
+    background-color: hsl(230deg 80% 50%);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -70,7 +70,7 @@ button a
 }
 button:hover
 {
-    background-color: rgb(3, 94, 94);
+    background-color: hsl(230deg 80% 55%)
 }
 button a:focus
 {
